@@ -74,3 +74,11 @@ main {
     grid-template-columns: 1fr;
   }
 }
+
+
+.track-title,
+.track-text,
+.track-input,
+.track-note {
+  will-change: transform, opacity;
+}

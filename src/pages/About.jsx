@@ -60,7 +60,7 @@ const About = () => {
           </div>
           <div className="col-md-6">
             <img 
-              src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=600&h=400&fit=crop" 
+              src="https://assets.telegraphindia.com/telegraph/2022/Mar/1647819891_new-project-22.jpg" 
               alt="Jewelry Workshop" 
               className="img-fluid rounded shadow-lg"
             />

@@ -121,7 +121,7 @@ const Navbar = () => {
               { path: '/testimonials', label: 'Reviews' },
               { path: '/contact', label: 'Contact' },
               { path: '/login', label: 'Account' },
-              { path: '/cart', label: 'Cart (0)' },
+              { path: '/cart', label: 'Cart' },
             ].map((item, index) => (
               <li key={item.path} className="nav-item">
                 <Link

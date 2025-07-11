@@ -81,6 +81,70 @@
 //   );
 // };
 
+
+
+
+
+
+
+// import React, { createContext, useState, useEffect } from 'react';
+
+// export const CartContext = createContext();
+
+// export const CartProvider = ({ children }) => {
+//   const [cartItems, setCartItems] = useState([]);
+
+//   // useEffect(() => {
+//   //   const storedCart = localStorage.getItem('cartItems');
+//   //   if (storedCart) {
+//   //     setCartItems(JSON.parse(storedCart));
+//   //   }
+//   // }, []);
+
+
+//   useEffect(() => {
+//   if (cartItems.length > 0) {
+//     localStorage.setItem('cartItems', JSON.stringify(cartItems));
+//   }
+// }, [cartItems]);
+
+
+//   useEffect(() => {
+//     localStorage.setItem('cartItems', JSON.stringify(cartItems));
+//   }, [cartItems]);
+
+//   const addToCart = (product) => {
+//     const existingItem = cartItems.find(item => item.id === product.id);
+//     if (existingItem) {
+//       setCartItems(prev =>
+//         prev.map(item =>
+//           item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
+//         )
+//       );
+//     } else {
+//       setCartItems(prev => [...prev, { ...product, quantity: 1 }]);
+//     }
+//   };
+
+//   // ✅ Define and add this function
+//   const updateQuantity = (id, newQuantity) => {
+//     setCartItems(prev =>
+//       prev
+//         .map(item =>
+//           item.id === id ? { ...item, quantity: newQuantity } : item
+//         )
+//         .filter(item => item.quantity > 0) // Remove items with 0 quantity
+//     );
+//   };
+
+//   return (
+//     <CartContext.Provider value={{ cartItems, addToCart, setCartItems, updateQuantity }}>
+//       {children}
+//     </CartContext.Provider>
+//   );
+// };
+
+
 import React, { createContext, useState, useEffect } from 'react';
 
 export const CartContext = createContext();
@@ -89,14 +153,20 @@ export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
 
   useEffect(() => {
-    const storedCart = localStorage.getItem('cartItems');
-    if (storedCart) {
-      setCartItems(JSON.parse(storedCart));
+    try {
+      const storedCart = localStorage.getItem('cartItems');
+      if (storedCart) {
+        setCartItems(JSON.parse(storedCart));
+      }
+    } catch (e) {
+      console.error("Could not load cart from localStorage", e);
     }
   }, []);
 
   useEffect(() => {
-    localStorage.setItem('cartItems', JSON.stringify(cartItems));
+    if (cartItems.length > 0) {
+      localStorage.setItem('cartItems', JSON.stringify(cartItems));
+    }
   }, [cartItems]);
 
   const addToCart = (product) => {
@@ -112,14 +182,13 @@ export const CartProvider = ({ children }) => {
     }
   };
 
-  // ✅ Define and add this function
   const updateQuantity = (id, newQuantity) => {
     setCartItems(prev =>
       prev
         .map(item =>
           item.id === id ? { ...item, quantity: newQuantity } : item
         )
-        .filter(item => item.quantity > 0) // Remove items with 0 quantity
+        .filter(item => item.quantity > 0)
     );
   };
 

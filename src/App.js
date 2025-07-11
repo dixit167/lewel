@@ -52,30 +52,41 @@ import Testimonials from './pages/Testimonials';
 import Contact from './pages/Contact';
 import Login from './pages/Login';
 import Cart from './pages/Cart';
+import { AuthProvider } from './context/AuthContext';
+import PrivateRoute from './utils/PrivateRoute';
 
 const App = () => {
   return (
-    <Router>
-      <CartProvider>
+    <CartProvider>
+      <Router>
         <div className="App">
           <GlobalStyles />
           <Navbar />
           <main>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/about" element={<About />} />
-              <Route path="/products" element={<Products />} />
-              <Route path="/testimonials" element={<Testimonials />} />
-              <Route path="/contact" element={<Contact />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/cart" element={<Cart />} />
-            </Routes>
+            <AuthProvider>
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/products" element={<Products />} />
+                <Route path="/testimonials" element={<Testimonials />} />
+                <Route path="/contact" element={<Contact />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/cart" element={<Cart />} />
+
+                {/* <Route path="/cart" element={
+                  <PrivateRoute>
+                    <Cart />
+                  </PrivateRoute>
+                } /> */}
+
+              </Routes>
+            </AuthProvider>
           </main>
           <Footer />
           <ToastContainer position="top-right" autoClose={2000} hideProgressBar />
         </div>
-      </CartProvider>
-    </Router>
+      </Router>
+    </CartProvider>
   );
 };
 
