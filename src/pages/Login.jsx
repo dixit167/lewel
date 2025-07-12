@@ -186,8 +186,8 @@ const Login = () => {
     }
 
     const url = isLogin
-      ? 'http://localhost:5000/api/users/login'
-      : 'http://localhost:5000/api/users/register';
+      ? 'https://jewel-web-2-backend.onrender.com/api/users/login'
+      : 'https://jewel-web-2-backend.onrender.com/api/users/register';
 
     const payload = isLogin
       ? {
