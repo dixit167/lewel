@@ -157,7 +157,7 @@ const Login = () => {
     password: '',
     confirmPassword: '',
     firstName: '',
-    lastName: ''
+    lastName: '',
   });
   const [message, setMessage] = useState('');
   const formRef = useRef(null);
