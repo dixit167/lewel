@@ -9,7 +9,7 @@ const Products = () => {
   const [allProducts, setAllProducts] = useState([]);
 
   useEffect(() => {
-  fetch("http://localhost:5000/api/products")
+  fetch("https://jewel-web-2-backend.onrender.com/api/products")
     .then((res) => res.json())
     .then((data) => {
       setAllProducts(data);
